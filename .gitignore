@@ -1,0 +1,25 @@
+# Root .gitignore for MEAN Stack To-Do App
+
+# Dependencies (both backend and frontend have their own)
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build outputs
+dist/
+build/
