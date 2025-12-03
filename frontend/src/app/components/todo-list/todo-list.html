@@ -1,0 +1,151 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <h1 class="display-4 mb-2">
+          <i class="fas fa-tasks text-primary"></i> To-Do List
+        </h1>
+        <p class="text-muted">Manage your daily tasks efficiently</p>
+      </div>
+
+      <!-- Error Alert using @if -->
+      @if (error) {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="fas fa-exclamation-circle"></i> {{ error }}
+          <button type="button" class="btn-close" (click)="error = ''" aria-label="Close"></button>
+        </div>
+      }
+
+      <!-- Add Todo Form -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <form (ngSubmit)="addTodo()">
+            <div class="input-group">
+              <span class="input-group-text bg-primary text-white">
+                <i class="fas fa-plus"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Add a new task..."
+                [(ngModel)]="newTodoText"
+                name="newTodo"
+                [disabled]="loading"
+              />
+              <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!newTodoText.trim() || loading"
+              >
+                <i class="fas fa-paper-plane"></i> Add
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Loading Spinner using @if -->
+      @if (loading) {
+        <div class="text-center my-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-2 text-muted">Loading tasks...</p>
+        </div>
+      }
+
+      <!-- Todo List using @if and @for -->
+      @if (!loading) {
+        <!-- Empty State using @if -->
+        @if (todos.length === 0) {
+          <div class="text-center my-5">
+            <i class="fas fa-clipboard-list fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">No tasks yet</h4>
+            <p class="text-muted">Add your first task to get started!</p>
+          </div>
+        }
+
+        <!-- Todo Items using @if and @for -->
+        @if (todos.length > 0) {
+          <div class="card shadow-sm">
+            <ul class="list-group list-group-flush">
+              @for (todo of todos; track todo._id) {
+                <li
+                  class="list-group-item"
+                  [class.bg-light]="isEditing(todo._id!)"
+                >
+                  <!-- View Mode using @if -->
+                  @if (!isEditing(todo._id!)) {
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="flex-grow-1">
+                        <span class="todo-text">{{ todo.text }}</span>
+                        <small class="d-block text-muted mt-1">
+                          <i class="fas fa-clock"></i> {{ todo.createdAt | date:'short' }}
+                        </small>
+                      </div>
+                      <div class="btn-group ms-3">
+                        <button
+                          class="btn btn-sm btn-outline-primary"
+                          (click)="startEdit(todo)"
+                          title="Edit"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button
+                          class="btn btn-sm btn-outline-danger"
+                          (click)="deleteTodo(todo._id!)"
+                          title="Delete"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  }
+
+                  <!-- Edit Mode using @if -->
+                  @if (isEditing(todo._id!)) {
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="editingTodoText"
+                        (keyup.enter)="saveEdit(todo._id!)"
+                        (keyup.escape)="cancelEdit()"
+                      />
+                      <button
+                        class="btn btn-success btn-sm"
+                        (click)="saveEdit(todo._id!)"
+                        [disabled]="!editingTodoText.trim()"
+                      >
+                        <i class="fas fa-check"></i> Save
+                      </button>
+                      <button
+                        class="btn btn-secondary btn-sm"
+                        (click)="cancelEdit()"
+                      >
+                        <i class="fas fa-times"></i> Cancel
+                      </button>
+                    </div>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Todo Count -->
+          <div class="text-center mt-3">
+            <small class="text-muted">
+              <i class="fas fa-list"></i> Total tasks: <strong>{{ todos.length }}</strong>
+            </small>
+          </div>
+        }
+      }
+
+    </div>
+  </div>
+</div>
