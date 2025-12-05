@@ -1,8 +1,8 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/database');
-const todoRoutes = require('./routes/todo.routes');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/database");
+const todoRoutes = require("./routes/todo.routes");
 
 const app = express();
 
@@ -14,11 +14,11 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api/todos', todoRoutes);
+app.use("/api/todos", todoRoutes);
 
-// Root Route
-app.get('/', (req, res) => {
-  res.json({ message: "To-Do API is running" });
+// Root
+app.get("/", (req, res) => {
+  res.json({ message: "API Working on Vercel" });
 });
 
 module.exports = app;
