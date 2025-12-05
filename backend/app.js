@@ -6,7 +6,7 @@ const todoRoutes = require('./routes/todo.routes');
 
 const app = express();
 
-// Connect to MongoDB
+// Connect DB
 connectDB();
 
 // Middleware
@@ -16,9 +16,9 @@ app.use(express.json());
 // Routes
 app.use('/api/todos', todoRoutes);
 
-// Root endpoint
+// Root Route
 app.get('/', (req, res) => {
-  res.json({ message: 'To-Do API is running on Vercel' });
+  res.json({ message: "To-Do API is running" });
 });
 
 module.exports = app;
