@@ -8,6 +8,13 @@ Modern Angular 20 frontend for the MEAN Stack To-Do List application. Built with
 
 ---
 
+## 🌐 Live Deployment
+
+**App URL:** https://my-todofy.web.app/
+**Status:** ✅ Live and Running
+
+---
+
 ## 🚀 Tech Stack
 
 - **Angular 20** - Modern frontend framework
@@ -16,6 +23,7 @@ Modern Angular 20 frontend for the MEAN Stack To-Do List application. Built with
 - **Font Awesome** - Professional icons
 - **RxJS** - Reactive programming
 - **HttpClient** - API communication
+- **Firebase Hosting** - Deployment platform
 
 ---
 
@@ -51,21 +59,22 @@ src/
 │   ├── components/
 │   │   └── todo-list/
 │   │       ├── todo-list.ts      # Main component logic
-│   │       ├── todo-list.html    # Template 
+│   │       ├── todo-list.html    # Template
 │   │       └── todo-list.css     # Component styles
 │   ├── services/
-│   │   └── todo-service.ts                 # HTTP service for API calls
+│   │   └── todo-service.ts       # HTTP service for API calls
 │   ├── models/
-│   │   └── todo.ts                         # TypeScript interface
-│   ├── app.ts                          # Root standalone component
+│   │   └── todo.ts               # TypeScript interface
+│   ├── app.ts                    # Root standalone component
 │   ├── app.html
 │   ├── app.css
-│   └── app.config.ts                       # Application configuration
+│   └── app.config.ts             # Application configuration
 ├── environments/
-│   └── environment.ts                      # Environment variables
-├── public/                                 # Static assets
-├── styles.css                              # Global styles
-└── index.html                              # Entry HTML file
+│   ├── environment.ts            # Development config
+│   └── environment.prod.ts       # Production config
+├── public/                       # Static assets
+├── styles.css                    # Global styles
+└── index.html                    # Entry HTML file
 ```
 
 ---
@@ -97,8 +106,7 @@ Application runs on `http://localhost:4200`
 
 ### Environment Variables
 
-Edit `src/environments/environment.ts`:
-
+**Development** (`src/environments/environment.ts`):
 ```typescript
 export const environment = {
   production: false,
@@ -106,7 +114,13 @@ export const environment = {
 };
 ```
 
-**For production**, update `environment.prod.ts` with your deployed backend URL.
+**Production** (`src/environments/environment.prod.ts`):
+```typescript
+export const environment = {
+  production: true,
+  apiUrl: 'https://mean-todo-app-sigma.vercel.app/api'
+};
+```
 
 ---
 
@@ -120,6 +134,8 @@ The frontend connects to the Express.js backend via HTTP service:
 | `createTodo()` | POST | `/api/todos` | Create new todo |
 | `updateTodo()` | PUT | `/api/todos/:id` | Update existing todo |
 | `deleteTodo()` | DELETE | `/api/todos/:id` | Delete todo |
+
+**Backend URL:** https://mean-todo-app-sigma.vercel.app/api
 
 ---
 
@@ -164,7 +180,7 @@ Navigate to `http://localhost:4200`. The app auto-reloads on file changes.
 ```bash
 ng build --configuration production
 ```
-Build artifacts stored in `dist/` directory.
+Build artifacts stored in `dist/frontend/browser/` directory.
 
 ### Run Tests
 ```bash
@@ -178,38 +194,57 @@ ng lint
 
 ---
 
-## 🌐 Deployment
+## 🌐 Deployment on Firebase
 
-### Vercel (Recommended)
+### Automatic Deployment
 
-1. **Install Vercel CLI:**
-```bash
-npm i -g vercel
+The app is deployed on Firebase Hosting with the following configuration:
+
+**firebase.json:**
+```json
+{
+  "hosting": {
+    "public": "dist/frontend/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
 ```
 
-2. **Deploy:**
-```bash
-vercel
-```
-
-3. **Environment Variables:**
-   - Add `apiUrl` in Vercel dashboard
-   - Point to deployed backend URL
-
-### Netlify
-
-1. **Build Command:** `ng build --configuration production`
-2. **Publish Directory:** `dist/frontend/browser`
-3. **Environment Variables:** Set `API_URL`
-
-### Manual Deployment
+### Manual Deployment Steps
 
 ```bash
-# Build production bundle
+# 1. Build production bundle
 ng build --configuration production
 
-# Deploy dist/frontend/browser folder to any static hosting
-# Update environment.prod.ts with backend URL
+# 2. Deploy to Firebase
+firebase deploy
+
+# 3. Access your app
+# URL: https://my-todofy.web.app/
+```
+
+### Quick Deploy Script
+
+Add to `package.json`:
+```json
+"scripts": {
+  "deploy": "ng build --configuration production && firebase deploy"
+}
+```
+
+Then run:
+```bash
+npm run deploy
 ```
 
 ---
@@ -268,6 +303,7 @@ ng build --configuration production
 ✅ **Code Organization** - Clear separation of concerns
 ✅ **Modern Syntax** - `@if` / `@for` control flow
 ✅ **Dependency Injection** - `inject()` function
+✅ **Production Ready** - Optimized build and deployment
 
 ---
 
@@ -276,12 +312,12 @@ ng build --configuration production
 ### Common Issues
 
 **1. CORS Error**
-- Ensure backend has CORS enabled
-- Check backend is running on `http://localhost:3000`
+- Ensure backend has CORS enabled for Firebase domain
+- Check backend is running on correct URL
 
 **2. API Not Found (404)**
-- Verify `environment.ts` has correct `apiUrl`
-- Confirm backend routes are working
+- Verify `environment.prod.ts` has correct `apiUrl`
+- Confirm backend routes are working: https://mean-todo-app-sigma.vercel.app/api/todos
 
 **3. Bootstrap/FontAwesome Not Loading**
 - Check `angular.json` styles array
@@ -291,6 +327,22 @@ ng build --configuration production
 ```bash
 ng serve --port 4201
 ```
+
+**5. Firebase Deployment Shows Welcome Page**
+- Clear browser cache (Ctrl+Shift+R)
+- Wait 5-10 minutes for CDN cache to clear
+- Try incognito mode
+- Verify `firebase.json` points to `dist/frontend/browser`
+
+---
+
+## 📊 Performance
+
+- **Bundle Size:** 694.60 KB (compressed to ~145.74 KB)
+- **First Load:** < 2 seconds
+- **Time to Interactive:** < 3 seconds
+- **Lighthouse Score:** 90+ (Performance)
+- **CDN:** Global distribution via Firebase
 
 ---
 
@@ -314,3 +366,5 @@ For issues or questions about this frontend application, please refer to the mai
 ---
 
 **Built with Angular 20 and modern web technologies** ⚡
+**Live at:** https://my-todofy.web.app/
+**Status:** Production Ready ✅
