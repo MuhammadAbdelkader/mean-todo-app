@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: 'https://mean-todo-app-sigma.vercel.app/api'
 };
