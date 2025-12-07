@@ -47,6 +47,7 @@ A professional to-do list application demonstrating modern full-stack developmen
 ## 🛠 Technology Stack
 
 ### Backend
+
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web framework
 - **MongoDB** - NoSQL database
@@ -54,6 +55,7 @@ A professional to-do list application demonstrating modern full-stack developmen
 - **Vercel** - Serverless deployment
 
 ### Frontend
+
 - **Angular 20** - Modern web framework
 - **TypeScript** - Type-safe JavaScript
 - **Bootstrap 5** - Responsive UI
@@ -94,6 +96,7 @@ mean-todo-app/
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js v18 or higher
 - MongoDB Atlas account (free tier)
 - Angular CLI: `npm install -g @angular/cli`
@@ -102,12 +105,14 @@ mean-todo-app/
 ### Local Development Setup
 
 **1. Clone the repository**
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/mean-todo-app.git
 cd mean-todo-app
 ```
 
 **2. Setup Backend**
+
 ```bash
 cd backend
 npm install
@@ -115,27 +120,30 @@ cp .env.example .env
 # Edit .env with your MongoDB URI
 npm start
 ```
+
 Backend runs on `http://localhost:3000`
 
 **3. Setup Frontend**
+
 ```bash
 cd frontend
 npm install
 # Update src/environments/environment.ts if needed
 ng serve
 ```
+
 Frontend runs on `http://localhost:4200`
 
 ---
 
 ## 🔌 API Endpoints
 
-| Method | Endpoint | Description | Request Body |
-|--------|----------|-------------|--------------|
-| GET | `/api/todos` | Get all todos | - |
-| POST | `/api/todos` | Create new todo | `{ "text": "Todo text" }` |
-| PUT | `/api/todos/:id` | Update todo | `{ "text": "Updated text" }` |
-| DELETE | `/api/todos/:id` | Delete todo | - |
+| Method | Endpoint         | Description     | Request Body                 |
+| ------ | ---------------- | --------------- | ---------------------------- |
+| GET    | `/api/todos`     | Get all todos   | -                            |
+| POST   | `/api/todos`     | Create new todo | `{ "text": "Todo text" }`    |
+| PUT    | `/api/todos/:id` | Update todo     | `{ "text": "Updated text" }` |
+| DELETE | `/api/todos/:id` | Delete todo     | -                            |
 
 **Base URL:** https://mean-todo-app-sigma.vercel.app
 
@@ -155,6 +163,7 @@ vercel --prod
 ```
 
 **Features:**
+
 - Automatic scaling
 - Global CDN
 - Environment variables management
@@ -173,6 +182,7 @@ firebase deploy
 ```
 
 **Features:**
+
 - Global CDN distribution
 - Automatic SSL certificates
 - Single-page app routing
@@ -185,16 +195,18 @@ firebase deploy
 ## 📦 Environment Variables
 
 ### Backend (.env)
+
 ```env
 PORT=3000
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/todos
 ```
 
 ### Frontend (environment.prod.ts)
+
 ```typescript
 export const environment = {
   production: true,
-  apiUrl: 'https://mean-todo-app-sigma.vercel.app/api'
+  apiUrl: 'https://mean-todo-app-sigma.vercel.app/api',
 };
 ```
 
@@ -203,6 +215,7 @@ export const environment = {
 ## 🧪 Testing
 
 ### Test Backend API
+
 ```bash
 # Get all todos
 curl https://mean-todo-app-sigma.vercel.app/api/todos
@@ -214,9 +227,11 @@ curl -X POST https://mean-todo-app-sigma.vercel.app/api/todos \
 ```
 
 ### Test Frontend
+
 Visit: https://my-todofy.web.app/
 
 **Local Testing:**
+
 ```bash
 # Terminal 1 - Backend
 cd backend && npm run dev
@@ -230,12 +245,14 @@ cd frontend && ng serve
 ## 📊 Performance Metrics
 
 ### Backend
+
 - **Response Time:** < 200ms average
 - **Uptime:** 99.9%
 - **Scaling:** Automatic serverless scaling
 - **Database:** MongoDB Atlas (Cloud)
 
 ### Frontend
+
 - **Bundle Size:** 694.60 KB (compressed: 145.74 KB)
 - **First Load:** < 2 seconds
 - **Time to Interactive:** < 3 seconds
@@ -247,6 +264,7 @@ cd frontend && ng serve
 ## 🎨 Application Features
 
 ### User Interface
+
 - Clean, modern design with Bootstrap 5
 - Responsive layout for all devices
 - Intuitive task management
@@ -255,6 +273,7 @@ cd frontend && ng serve
 - Error handling
 
 ### Technical Features
+
 - RESTful API architecture
 - MongoDB data persistence
 - Angular standalone components
@@ -290,11 +309,13 @@ cd frontend && ng serve
 ## 🐛 Troubleshooting
 
 ### Backend Issues
+
 - **MongoDB Connection Failed:** Check MongoDB URI in Vercel environment variables
 - **CORS Error:** Verify frontend URL is whitelisted in backend CORS config
 - **404 on API:** Ensure `vercel.json` routes are correct
 
 ### Frontend Issues
+
 - **Blank Page:** Clear browser cache or try incognito mode
 - **API Error:** Check `environment.prod.ts` has correct backend URL
 - **Build Error:** Run `npm install` and ensure all dependencies are installed
@@ -334,6 +355,7 @@ Copyright (c) 2025 Mohamed Abdelkader
 ## 👨‍💻 Developer
 
 **Mohamed Abdelkader**
+
 - Full-Stack MEAN Developer
 - Clean, maintainable code
 - Professional delivery
@@ -353,8 +375,9 @@ Copyright (c) 2025 Mohamed Abdelkader
 ## 📧 Support
 
 For questions about this project:
+
 1. Check the documentation in `backend/` and `frontend/` folders
-2. Open an issue in the Repository
+2. Open an issue in the repository
 3. Review the troubleshooting sections
 
 ---
