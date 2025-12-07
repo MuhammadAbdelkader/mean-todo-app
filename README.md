@@ -354,7 +354,7 @@ Copyright (c) 2025 Mohamed Abdelkader
 
 For questions about this project:
 1. Check the documentation in `backend/` and `frontend/` folders
-2. Open an issue in the repository
+2. Open an issue in the Repository
 3. Review the troubleshooting sections
 
 ---
