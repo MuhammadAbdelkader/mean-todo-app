@@ -50,18 +50,20 @@ src/
 ├── app/
 │   ├── components/
 │   │   └── todo-list/
-│   │       ├── todo-list.component.ts      # Main component logic
-│   │       ├── todo-list.component.html    # Template with @if/@for
-│   │       └── todo-list.component.css     # Component styles
+│   │       ├── todo-list.ts      # Main component logic
+│   │       ├── todo-list.html    # Template 
+│   │       └── todo-list.css     # Component styles
 │   ├── services/
-│   │   └── todo.service.ts                 # HTTP service for API calls
+│   │   └── todo-service.ts                 # HTTP service for API calls
 │   ├── models/
 │   │   └── todo.ts                         # TypeScript interface
-│   ├── app.component.ts                    # Root standalone component
+│   ├── app.ts                          # Root standalone component
+│   ├── app.html
+│   ├── app.css
 │   └── app.config.ts                       # Application configuration
 ├── environments/
 │   └── environment.ts                      # Environment variables
-├── assets/                                 # Static assets
+├── public/                                 # Static assets
 ├── styles.css                              # Global styles
 └── index.html                              # Entry HTML file
 ```

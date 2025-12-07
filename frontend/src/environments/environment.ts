@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://mean-todo-app-sigma.vercel.app/api/todos'
+  apiUrl: 'http://localhost:3000/api'
 };
